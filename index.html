@@ -89,6 +89,33 @@ h1{margin:0 0 var(--s3);line-height:1}
 @keyframes bob{0%,100%{transform:rotate(1.5deg) translateY(0)}50%{transform:rotate(.5deg) translateY(-9px)}}
 .win:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,.1) 50%,transparent 60%);transform:translateX(-120%);animation:shine 6s ease-in-out infinite}
 @keyframes shine{0%,50%{transform:translateX(-120%)}100%{transform:translateX(120%)}}
+#fx{position:fixed;inset:0;pointer-events:none;z-index:50;overflow:hidden}
+#fx i{position:absolute;display:block}
+.fxr{width:12px;height:12px;margin:-6px 0 0 -6px;border:2px solid var(--ink);border-radius:50%;opacity:.55;animation:fxr .45s ease-out forwards}
+@keyframes fxr{to{transform:scale(3.5);opacity:0}}
+.stage{position:relative}.tilt{position:relative;z-index:1}
+.avatar{position:absolute;right:12%;top:-104px;width:210px;z-index:0;pointer-events:none;overflow:visible}
+.av-bob{animation:avb 4s ease-in-out infinite}
+@keyframes avb{50%{transform:translateY(-5px)}}
+.wave{transform-box:view-box;transform-origin:150px 124px;animation:wv 1.4s ease-in-out infinite}
+@keyframes wv{0%,100%{transform:rotate(-14deg)}50%{transform:rotate(16deg)}}
+.eyes{transform-box:fill-box;transform-origin:center;animation:bl 4.5s infinite}
+@keyframes bl{0%,92%,100%{transform:scaleY(1)}95%{transform:scaleY(.1)}}
+.spark{animation:sp 2.4s ease-in-out infinite}
+@keyframes sp{50%{opacity:.25}}
+@media(max-width:800px){.stage{margin-top:84px}.avatar{width:180px;top:-90px}}
+@media(prefers-reduced-motion:reduce){.av-bob,.wave,.eyes,.spark{animation:none}}
+#buddy{position:fixed;left:0;bottom:0;z-index:40;width:96px;pointer-events:none;opacity:0;transform:translate(var(--x,0px),72%);transition:transform .7s cubic-bezier(.34,1.5,.5,1),opacity .35s}
+#buddy.show{opacity:1}#buddy.up{transform:translate(var(--x,0px),0)}
+#buddy .bw{pointer-events:auto;cursor:pointer}
+#buddy.go .bw{animation:hop .55s ease-in-out infinite}
+@keyframes hop{50%{transform:translateY(-14px)}}
+.bsvg{display:block;width:100%;overflow:visible}
+#buddy.go .wave{animation-duration:.45s}
+.bub{position:absolute;bottom:calc(100% + 14px);background:#fffdf6;color:#121212;border:2.5px solid #121212;border-radius:12px;padding:3px 10px;font:600 .78rem var(--mono);white-space:nowrap;box-shadow:3px 3px 0 #121212;opacity:0;transform:translateY(8px) scale(.85);transition:opacity .25s,transform .35s cubic-bezier(.34,1.5,.5,1)}
+.bub.on{opacity:1;transform:none}
+#buddy.L .bub{left:8px}#buddy.R .bub{right:8px}
+@media(max-width:600px){#buddy{width:78px}.bub{font-size:.72rem}}
 /* sections */
 .sec{padding:var(--s4) 0}
 h2{display:inline-block;font:800 clamp(1.8rem,5vw,2.8rem)/1 var(--display);margin:0 0 var(--s3);background:var(--card);border:var(--line) solid var(--ink);padding:.2em .6em;box-shadow:5px 5px 0 var(--ink);transform:rotate(-1deg)}
@@ -156,7 +183,17 @@ dd{margin:0}
 <div class="kw"><span>Python</span><span>SQL</span><span>Java</span><span>C#</span><span>Machine Learning</span></div>
 <div class="cta"><a class="btn" href="#work">See my projects</a><a class="btn alt" href="mailto:devnarayanj20@gmail.com" target="_blank" rel="noopener">Email me</a></div>
 </div>
-<div class="stage" id="stage"><div class="tilt" id="tilt"><div class="win"><div class="bar"><i></i><i></i><i></i><span>dev.js</span><span class="av" id="shot"></span></div>
+<div class="stage" id="stage"><svg class="avatar" viewBox="0 0 220 140" aria-hidden="true"><g class="av-bob" stroke="#121212" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+<path d="M28 140q0-36 42-42h60q42 6 42 42z" fill="#e63b2e"/>
+<g class="wave"><path d="M150 124q24-4 32-34" fill="none" stroke-width="17"/><path d="M150 124q24-4 32-34" fill="none" stroke="#e63b2e" stroke-width="9"/><circle cx="183" cy="86" r="11" fill="#ffd23f"/></g>
+<circle cx="100" cy="60" r="44" fill="#ffd23f"/>
+<path d="M56 54q4-36 44-36t44 36q-18-14-44-14t-44 14z" fill="#121212"/>
+<path d="M54 62q0-48 46-48t46 48" fill="none" stroke-width="5"/>
+<rect x="46" y="56" width="14" height="28" rx="6" fill="#121212"/><rect x="140" y="56" width="14" height="28" rx="6" fill="#121212"/>
+<g class="eyes" fill="#121212" stroke="none"><circle cx="84" cy="66" r="5"/><circle cx="116" cy="66" r="5"/></g>
+<path d="M86 82q14 14 28 0" fill="none"/></g>
+<g class="spark" stroke="#121212" stroke-width="3" fill="none" stroke-linecap="round"><path d="M20 30v14M13 37h14"/><path d="M204 38v10M199 43h10"/></g></svg>
+<div class="tilt" id="tilt"><div class="win"><div class="bar"><i></i><i></i><i></i><span>dev.js</span><span class="av" id="shot"></span></div>
 <pre class="code" aria-label="A short profile written as code"><span class="ln" style="--i:0"><b class="k">const</b> dev = {</span>
 <span class="ln" style="--i:1">  <b class="p">name</b>: <b class="s">"Dev Narayan Jayakumar"</b>,</span>
 <span class="ln" style="--i:2">  <b class="p">degree</b>: <b class="s">"BEng Computer Science"</b>,</span>
@@ -241,6 +278,16 @@ dd{margin:0}
 </section>
 </main>
 
+<div id="buddy" aria-hidden="true"><span class="bub" id="bub"></span><div class="bw"><svg class="bsvg" viewBox="0 0 220 140" aria-hidden="true"><g class="av-bob" stroke="#121212" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+<path d="M28 140q0-36 42-42h60q42 6 42 42z" fill="#e63b2e"/>
+<g class="wave"><path d="M150 124q24-4 32-34" fill="none" stroke-width="17"/><path d="M150 124q24-4 32-34" fill="none" stroke="#e63b2e" stroke-width="9"/><circle cx="183" cy="86" r="11" fill="#ffd23f"/></g>
+<circle cx="100" cy="60" r="44" fill="#ffd23f"/>
+<path d="M56 54q4-36 44-36t44 36q-18-14-44-14t-44 14z" fill="#121212"/>
+<path d="M54 62q0-48 46-48t46 48" fill="none" stroke-width="5"/>
+<rect x="46" y="56" width="14" height="28" rx="6" fill="#121212"/><rect x="140" y="56" width="14" height="28" rx="6" fill="#121212"/>
+<g class="eyes" fill="#121212" stroke="none"><circle cx="84" cy="66" r="5"/><circle cx="116" cy="66" r="5"/></g>
+<path d="M86 82q14 14 28 0" fill="none"/></g>
+<g class="spark" stroke="#121212" stroke-width="3" fill="none" stroke-linecap="round"><path d="M20 30v14M13 37h14"/><path d="M204 38v10M199 43h10"/></g></svg></div></div>
 <div id="toast" role="status" aria-live="polite"></div>
 <script>
 document.getElementById('y').textContent=new Date().getFullYear();
@@ -270,6 +317,21 @@ function eraseWord(done){(function e(){var v=cyc.textContent;if(v.length){cyc.te
 function cycle(){typeWord(words[wi%words.length],function(){eraseWord(function(){wi++;cycle()})})}
 function next(){if(k>=lines.length)return;var l=lines[k++],isNow=l.contains(cyc);l.classList.add('on');setTimeout(isNow?cycle:next,isNow?400:parseInt(l.style.getPropertyValue('--t'))+60);if(isNow)setTimeout(next,600)}
 setTimeout(next,600)})();
+(function(){if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+var fx=document.createElement('div');fx.id='fx';document.body.appendChild(fx);
+addEventListener('click',function(e){var r=document.createElement('i');r.className='fxr';r.style.left=e.clientX+'px';r.style.top=e.clientY+'px';fx.appendChild(r);r.addEventListener('animationend',function(){r.remove()})},{passive:true});
+})();
+(function(){var b=document.getElementById('buddy'),bub=document.getElementById('bub');
+if(!b)return;if(matchMedia('(prefers-reduced-motion:reduce)').matches){b.remove();return}
+var hero=document.querySelector('.hero'),secs=[['work','Check out my projects!','R'],['about',"That's me!",'L'],['skills','My tools and skills','R'],['experience',"Where I've been",'L'],['contact',"Let's talk!",'R']],side='R',cur='',tIdle,tBub;
+function place(){var w=b.offsetWidth||96;b.style.setProperty('--x',(side==='L'?12:innerWidth-w-12)+'px');b.classList.toggle('L',side==='L');b.classList.toggle('R',side==='R')}
+function say(t){bub.textContent=t;bub.classList.add('on');clearTimeout(tBub);tBub=setTimeout(function(){bub.classList.remove('on')},2400)}
+function section(){var y=innerHeight*.45,f=null;secs.forEach(function(x){var e=document.getElementById(x[0]);if(!e)return;var r=e.getBoundingClientRect();if(r.top<=y&&r.bottom>y)f=x});return f}
+function onScroll(){if(hero.getBoundingClientRect().bottom>innerHeight*.35){b.classList.remove('show','up','go');bub.classList.remove('on');cur='';return}
+b.classList.add('show','up','go');var f=section();if(f&&f[0]!==cur){cur=f[0];side=f[2];place();say(f[1])}
+clearTimeout(tIdle);tIdle=setTimeout(function(){b.classList.remove('go','up')},900)}
+b.querySelector('.bw').addEventListener('click',function(){b.classList.add('up','go');say('Hi, thanks for visiting!');clearTimeout(tIdle);tIdle=setTimeout(function(){b.classList.remove('go','up')},1200)});
+addEventListener('scroll',onScroll,{passive:true});addEventListener('resize',place);place();onScroll()})();
 </script>
 </body>
 </html>
